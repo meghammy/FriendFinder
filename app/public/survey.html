@@ -32,7 +32,7 @@
             <h2>Survey Questions</h2>
             <hr>
             <h3><strong>About You</strong></h3>
-            <form class="form-inline">
+            <form class="form-inline" method="POST" action="/api/friends">
                 <div class="form-group">
                     <label for="name">Name: </label>
                     <input type="name" class="form-control" id="name" placeholder="Enter Name" required>
@@ -176,19 +176,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- click event handler -->
     <script type="text/javascript">
-
-
     // Chosen CSS
     var config = {
-      '.chosen-select'           : {},
-      '.chosen-select-deselect'  : {allow_single_deselect:true},
-      '.chosen-select-no-single' : {disable_search_threshold:10},
-      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-      '.chosen-select-width'     : {width:"95%"}
-    }
-    for (var selector in config) {
-      $(selector).chosen(config[selector]);
-    }
+            '.chosen-select': {},
+            '.chosen-select-deselect': {
+                allow_single_deselect: true
+            },
+            '.chosen-select-no-single': {
+                disable_search_threshold: 10
+            },
+            '.chosen-select-no-results': {
+                no_results_text: 'Oops, nothing found!'
+            },
+            '.chosen-select-width': {
+                width: "95%"
+            }
+        }
+        // for (var selector in config) {
+        //     $(selector).chosen(config[selector]);
+    //}
     //capture the form inputs
     $('#submit').on("click", function() {
 
@@ -226,14 +232,15 @@
                     $('#q9').val().trim(),
                     $('#q10').val().trim()
                 ]
-            }
+            };
+            console.log(userInput);
 
             //URL of the website
 
             var currentURL = window.location.origin;
 
             //AJAX post the data to the friends API
-            $.post(currentURL + '../../data/friends', userInput, function(data) {
+            $.post(currentURL + 'api/friends', userInput, function(data) {
                 $("#matchName").text(data.name);
                 $("#matchImg").attr("src", data.photo);
 
