@@ -3,19 +3,39 @@
 // 	* A POST routes `/api/friends`. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic. 
 
 
-//Load Data
-var friend = require("../data/friends");
-var path = require("path");
+//dependencies
+
+
+var friend = require("../data/friends.js")''
+
+
 
 //Routing
 module.export = function(app) {
+
     app.get("/api/friends", function(req, res) {
         res.json(friend);
     });
 
     app.post("/api/friends", function(req, res) {
-        console.log(req.body);
+
+    	var user = req.body;
+    	var name = req.body.name;
+    	var img = req.body.img;
+
+    	var userScores = req.body.scores;
+        console.log(userScores);
+
+        var userS1 = req.body.scores[0];
+        console.log("User Score 1: " + userS1);
+
+        for(var i = 0, i < friend.length; i++) {
+        	console.log(friend[i]);
+        };
+
+
         friend.push(req.body);
-        // res.sendFile(path.join(__dirname + '/home.html'));
-    })
-}
+        res.json(true);
+        
+    });
+};

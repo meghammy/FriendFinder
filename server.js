@@ -12,7 +12,7 @@ var path = require("path");
 //config express
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -20,14 +20,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-//create server
-var server = http.createServer(handleRequest);
 
-function handleRequest (req, res) {
-	var url = url.parse(pathname) {
+//router
 
-	switch (url.pathname) {
-		c
-	}
-	}
-}
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRoutes.js")(app);
+
+
+//listener
+app.listen(PORT,function() {
+	console.log("App listening on PORT: " + PORT);
+});

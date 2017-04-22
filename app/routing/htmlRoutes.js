@@ -6,15 +6,19 @@
 
 //    * A GET Route to `/survey` which should display the survey page.
 
+//Dependencies
 var path = require("path");
 
+
+
+//ROUTING	
 module.exports = function(app) {
 	//GET Route
-    app.get('/survey', fucntion(req, res) {
-        res.sendFile(__dirname + '/../public/survey.html');
+    app.get("/survey", fucntion(req, res) {
+        res.sendFile(__dirname + "/../public/survey.html");
     });
     //USE Route
     app.use(function(req.res) {
-        res.sendFile(path.join(__dirname + '/../public/home.html'));
+        res.sendFile(path.join(__dirname + "/../public/home.html"));
     });
-}
+};
