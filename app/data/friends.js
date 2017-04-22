@@ -32,7 +32,7 @@ var friend = [
 		//31
 	}
 ];
-];
+
 
 	// export the array
 module.exports = friend;

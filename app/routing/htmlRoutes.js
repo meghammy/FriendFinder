@@ -1,24 +1,32 @@
 // * Your `htmlRoutes.js` file should include two routes:
-// 	* A GET Route to `/survey` which should display the survey page.
-// 	* A default USE route that leads to `home.html` which displays the home page.
+//  * A GET Route to `/survey` which should display the survey page.
+//  * A default USE route that leads to `home.html` which displays the home page.
 
-// 	Your `htmlRoutes.js` file should include two routes:
+//  Your `htmlRoutes.js` file should include two routes:
 
 //    * A GET Route to `/survey` which should display the survey page.
 
 //Dependencies
 var path = require("path");
+var express = require("express");
+var bodyParser = require("body-parser");
 
 
+//ROUTING   
 
-//ROUTING	
+var app = express();
 module.exports = function(app) {
-	//GET Route
-    app.get("/survey", fucntion(req, res) {
+
+
+    //Home Page
+    //GET Route
+    app.get("/survey", function(req, res) {
         res.sendFile(__dirname + "/../public/survey.html");
     });
-    //USE Route
-    app.use(function(req.res) {
+
+
+    //Defaul USE route to home.html
+    app.get("/", function(req, res) {
         res.sendFile(path.join(__dirname + "/../public/home.html"));
     });
-};
+}
